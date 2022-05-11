@@ -122,7 +122,7 @@ public class Waffle
 		return result;
 	}
 	
-	public void printWaffle() 
+	public void printColorWaffle() 
 	{
 		for(int i = 0; i < 5; i ++)
 		{
@@ -137,6 +137,22 @@ public class Waffle
 				case 2: backgroundColor = ANSI_GREEN_BACKGROUND; break;
 				}
 				System.out.print(backgroundColor + waffle[i][j] + ANSI_RESET + " ");
+				if (i % 2 == 1)
+				{
+					System.out.print("  ");
+				}
+			}
+			System.out.println();
+		}
+	}
+	
+	public void printWaffle() 
+	{
+		for(int i = 0; i < 5; i ++)
+		{
+			for(int j = 0; j < waffle[i].length; j ++)
+			{
+				System.out.print(waffle[i][j] + " ");
 				if (i % 2 == 1)
 				{
 					System.out.print("  ");
