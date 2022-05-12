@@ -64,6 +64,43 @@ public class Waffle
 			e.printStackTrace();
 		}
 	}
+	
+	public Waffle(String h1, String h2, String h3, String v1, String v2, String v3)
+	{
+		char[] r1 = h1.toCharArray();
+		char[] r3 = h2.toCharArray();
+		char[] r5 = h3.toCharArray();
+
+		char[] r2 = new char[] {v1.charAt(1), ' ', v2.charAt(1), ' ', v3.charAt(1)};
+		char[] r4 = new char[] {v1.charAt(3), ' ', v2.charAt(3), ' ', v3.charAt(3)};
+		
+		waffle = new char[][] {r1, r2, r3, r4, r5};
+		
+		for(int i = 0; i < 5; i ++)
+		{
+			for(int j = 0; j < 5; j ++)
+			{
+				color[i][j] = -1;
+			}
+		}
+	}
+	
+	public void swap(int firstWordRow, int firstWordCol, int secondWordRow, int secondWordCol, char c) 
+	{
+//		for(int i = 0; i < 5; i ++)
+//		{
+//			for(int j = 0; j < 5; j ++)
+//			{
+//				if(waffle[i][j] == c)
+//				{
+//					
+//				}
+//			}
+//		}
+		char temp = waffle[firstWordRow][firstWordCol];
+		waffle[firstWordRow][firstWordCol] = waffle[secondWordRow][secondWordCol];
+		waffle[secondWordRow][secondWordCol] = temp;
+	}
 
 	
 	public char[] getUnusedCharArray()
@@ -157,10 +194,6 @@ public class Waffle
 			for(int j = 0; j < waffle[i].length; j ++)
 			{
 				System.out.print(waffle[i][j] + " ");
-				if (i % 2 == 1)
-				{
-					System.out.print("  ");
-				}
 			}
 			System.out.println();
 		}
