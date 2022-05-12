@@ -1,6 +1,3 @@
-import java.io.File;
-import java.io.*;
-import entities.Waffle;
 import view.SolverView;
 
 public class Application 

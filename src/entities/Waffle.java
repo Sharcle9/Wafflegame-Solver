@@ -10,8 +10,8 @@ public class Waffle
 	public static final String ANSI_YELLOW_BACKGROUND = "\u001B[103m";
 	public static final String ANSI_GREEN_BACKGROUND = "\u001B[102m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[107m";
-	private char[][] waffle;
-	private int[][] color;
+	private char[][] waffle = new char[5][5];
+	private int[][] color = new int[5][5];
 	
 	public Waffle(File txt)
 	{
@@ -28,6 +28,7 @@ public class Waffle
 		int[] crow5;
 		
 		try {
+			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner(txt);
 
 			String data = scanner.nextLine();
@@ -63,22 +64,21 @@ public class Waffle
 			e.printStackTrace();
 		}
 	}
+
 	
-	public String getWord(char c, int i)
+	public char[] getUnusedCharArray()
 	{
-		String result = "";
-		if(c == 'h')
+		char[] result = new char[21];
+		int index = 0;
+		for(int i = 0; i < 5; i ++)
 		{
 			for(int j = 0; j < 5; j ++)
 			{
-				result += getWaffle()[i * 2 - 2][j];
-			}
-		}
-		else if(c == 'v')
-		{
-			for(int j = 0; j < 5; j ++)
-			{
-				result += getWaffle()[j][i * 2 - 2 - ((j%2) * (i-1))];
+				if(color[i][j] == 0 || color[i][j] == 1)
+				{
+					result[index] = waffle[i][j];
+					index ++;
+				}
 			}
 		}
 		
@@ -86,11 +86,9 @@ public class Waffle
 	}
 	
 	
-	
-	
 	public char[] getCharArray(String s, int len)
 	{
-		char[] result = new char[len];
+		char[] result = new char[5];
 		int index = 0;
 		for(int i = 0; i < s.length(); i ++)
 		{
@@ -99,6 +97,11 @@ public class Waffle
 			{
 				result[index] = Character.toUpperCase(s.charAt(i));
 				index ++;
+				if(len == 3 && index < 5) 
+				{
+					result[index] = ' ';
+					index ++;
+				}
 			}
 		}
 		
@@ -107,7 +110,7 @@ public class Waffle
 	
 	public int[] getIntArray(String s, int len)
 	{
-		int[] result = new int[len];
+		int[] result = new int[5];
 		int index = 0;
 		for(int i = 0; i < s.length(); i ++)
 		{
@@ -116,6 +119,11 @@ public class Waffle
 			{
 				result[index] = Character.getNumericValue(s.charAt(i));
 				index ++;
+				if(len == 3 && index < 5) 
+				{
+					result[index] = -1;
+					index ++;
+				}
 			}
 		}
 		
@@ -137,10 +145,6 @@ public class Waffle
 				case 2: backgroundColor = ANSI_GREEN_BACKGROUND; break;
 				}
 				System.out.print(backgroundColor + waffle[i][j] + ANSI_RESET + " ");
-				if (i % 2 == 1)
-				{
-					System.out.print("  ");
-				}
 			}
 			System.out.println();
 		}

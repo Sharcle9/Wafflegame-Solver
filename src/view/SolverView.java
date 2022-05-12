@@ -18,11 +18,17 @@ public class SolverView {
 		Waffle waffle = new Waffle(file);
 		
 		System.out.println("-----Waffle-----");
-		waffle.printWaffle();
+		waffle.printColorWaffle();
 		System.out.println("\nSolving Now...");
 		
-		String word = waffle.getWord('h', 1);
+		String word = solvingController.getWord(waffle.getWaffle(), 'h', 1);
 		System.out.println("Word: " + word + ". Is a word? " + solvingController.isWord(word));
+		
+		System.out.println(waffle.getUnusedCharArray());
+
+		System.out.println(solvingController.getAllChar(waffle.getWaffle()));
+
+		System.out.println(solvingController.verify(waffle, waffle.getWaffle()));
 		
 	}
 }
