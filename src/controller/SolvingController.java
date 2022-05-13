@@ -168,7 +168,7 @@ public class SolvingController {
 			int count = countLetter(word, letter);
 			
 			int countedLetters = 0;
-			for(int j = 0; j < col; j ++)
+			for(int j = 0; j < 5; j ++)
 			{
 				if(array[row][j] == letter && color[row][j] != 0) countedLetters ++;
 			}
@@ -278,12 +278,12 @@ public class SolvingController {
 			if(canWork(waffle, 'v', 3, dict[i])) v3.add(dict[i].toUpperCase());
 		}
 
-		System.out.println(h1.toString());
-		System.out.println(h2.toString());
-		System.out.println(h3.toString());
-		System.out.println(v1.toString());
-		System.out.println(v2.toString());
-		System.out.println(v3.toString());
+		System.out.println("\nPossible 1st horizontal word:\t" + h1.toString());
+		System.out.println("Possible 2nd horizontal word:\t" +h2.toString());
+		System.out.println("Possible 3rd horizontal word:\t" +h3.toString());
+		System.out.println("Possible 1st vertical word: \t" + v1.toString());
+		System.out.println("Possible 2nd vertical word: \t" + v2.toString());
+		System.out.println("Possible 3rd vertical word: \t" + v3.toString());
 		
 		for(int ih1 = 0; ih1 < h1.size(); ih1 ++)
 		{
@@ -297,11 +297,28 @@ public class SolvingController {
 						{
 							for(int iv3 = 0; iv3 < v3.size(); iv3 ++)
 							{
-								Waffle attempt = new Waffle(h1.get(ih1), h2.get(ih2), h3.get(ih3), v1.get(iv1), v2.get(iv2), v3.get(ih3));
+								Waffle attempt = new Waffle(h1.get(ih1), h2.get(ih2), h3.get(ih3), v1.get(iv1), v2.get(iv2), v3.get(iv3));
 //								attempt.printWaffle();
 //								System.out.println(verify(waffle, attempt.getWaffle()));
+								
+//								if(h1.get(ih1).equals("LURID") && h2.get(ih2).equals("APNEA") && v2.get(iv2).equals("RENAL") && v3.get(iv3).equals("DRAKE"))
+//								{
+//									System.out.println("Found");
+//									attempt.printWaffle();
+//									int[][] color = generateColor(waffle.getWaffle(), attempt.getWaffle());
+//									for(int i = 0; i < 5; i ++)
+//									{
+//										for(int j = 0; j < 5; j ++)
+//										{
+//											System.out.print(color[i][j] + " ");
+//										}
+//										System.out.println();
+//									}
+//									
+//								}
 								if(verify(waffle, attempt.getWaffle()))
 								{
+									System.out.println("\nSolution Found!");
 									attempt.printWaffle();
 									return;
 								}

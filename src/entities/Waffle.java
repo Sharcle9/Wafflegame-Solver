@@ -65,6 +65,11 @@ public class Waffle
 		}
 	}
 	
+	public Waffle(char[][] waffle)
+	{
+		this.waffle = waffle;
+	}
+	
 	public Waffle(String h1, String h2, String h3, String v1, String v2, String v3)
 	{
 		char[] r1 = h1.toCharArray();
